@@ -1,0 +1,142 @@
+
+
+
+const int pinBoton1= 53; //declaramos constantes con numero de pin para los botones
+const int pinBoton2= 51;
+const int pinBoton3= 49;
+const int pinBoton4= 47;
+const int pinBoton5= 45; //declaramos constantes con numero de pin para los botones
+const int pinBoton6= 43;
+const int pinBoton7= 41;
+const int pinBoton8= 39;
+const int pinBoton9= 37; //declaramos constantes con numero de pin para los botones
+const int pinBoton10= 35;
+const int pinBoton11= 33;
+const int pinBoton12= 31;
+const int pinBoton13= 29; //declaramos constantes con numero de pin para los botones
+const int pinBoton14= 27;
+const int pinBoton15= 25;
+const int pinBoton16= 23;
+
+
+int valorBoton1= 0; //declaramos variables para almacenar el estado de los botones
+int valorBoton2= 0;
+int valorBoton3= 0;
+int valorBoton4= 0;
+int valorBoton5= 0; //declaramos variables para almacenar el estado de los botones
+int valorBoton6= 0;
+int valorBoton7= 0;
+int valorBoton8= 0;
+int valorBoton9= 0; //declaramos variables para almacenar el estado de los botones
+int valorBoton10= 0;
+int valorBoton11= 0;
+int valorBoton12= 0;
+int valorBoton13= 0; //declaramos variables para almacenar el estado de los botones
+int valorBoton14= 0;
+int valorBoton15= 0;
+int valorBoton16= 0;
+
+/*
+int joyX;
+int joyY;
+int joyXMap;
+int joyYMap;
+*/
+
+
+ 
+void setup(void){
+  Serial.begin(9600);
+
+  
+  pinMode (pinBoton1,  INPUT_PULLUP);
+  pinMode (pinBoton2,  INPUT_PULLUP);
+  pinMode (pinBoton3,  INPUT_PULLUP);
+  pinMode (pinBoton4,  INPUT_PULLUP);
+  pinMode (pinBoton5,  INPUT_PULLUP);
+  pinMode (pinBoton6,  INPUT_PULLUP);
+  pinMode (pinBoton7,  INPUT_PULLUP);
+  pinMode (pinBoton8,  INPUT_PULLUP);
+  pinMode (pinBoton9,  INPUT_PULLUP);
+  pinMode (pinBoton10,  INPUT_PULLUP);
+  pinMode (pinBoton11,  INPUT_PULLUP);
+  pinMode (pinBoton12,  INPUT_PULLUP);
+  pinMode (pinBoton13,  INPUT_PULLUP);
+  pinMode (pinBoton14,  INPUT_PULLUP);
+  pinMode (pinBoton15,  INPUT_PULLUP);
+  pinMode (pinBoton16,  INPUT_PULLUP);
+  
+}
+ 
+void loop(void){
+  
+  
+  valorBoton1=digitalRead (pinBoton1); //leemos pines donde hemos conectado los botones
+  valorBoton2=digitalRead (pinBoton2);
+  valorBoton3=digitalRead (pinBoton3);
+  valorBoton4=digitalRead (pinBoton4);
+  valorBoton5=digitalRead (pinBoton5); //leemos pines donde hemos conectado los botones
+  valorBoton6=digitalRead (pinBoton6);
+  valorBoton7=digitalRead (pinBoton7);
+  valorBoton8=digitalRead (pinBoton8);
+  valorBoton9=digitalRead (pinBoton9); //leemos pines donde hemos conectado los botones
+  valorBoton10=digitalRead (pinBoton10);
+  valorBoton11=digitalRead (pinBoton11);
+  valorBoton12=digitalRead (pinBoton12);
+  valorBoton13=digitalRead (pinBoton13); //leemos pines donde hemos conectado los botones
+  valorBoton14=digitalRead (pinBoton14);
+  valorBoton15=digitalRead (pinBoton15);
+  valorBoton16=digitalRead (pinBoton16);
+ 
+  /*
+  joyX=analogRead (A0);
+  joyY=analogRead (A1);
+  
+  joyXMap=map(joyX, 0, 1024, -45, 45);
+  joyYMap=map(joyY, 0, 1024,  -45, 45);
+  */
+
+    Serial.flush();
+    Serial.print(valorBoton1);
+    Serial.print(",");
+    Serial.print(valorBoton2);
+    Serial.print(",");
+    Serial.print(valorBoton3);
+    Serial.print(",");
+    Serial.print(valorBoton4);
+    Serial.print(",");
+      Serial.print(valorBoton5);
+    Serial.print(",");
+    Serial.print(valorBoton6);
+    Serial.print(",");
+    Serial.print(valorBoton7);
+    Serial.print(",");
+    Serial.print(valorBoton8);
+    Serial.print(",");
+      Serial.print(valorBoton9);
+    Serial.print(",");
+    Serial.print(valorBoton10);
+    Serial.print(",");
+    Serial.print(valorBoton11);
+    Serial.print(",");
+    Serial.print(valorBoton12);
+    Serial.print(",");
+    Serial.print(valorBoton13);
+    Serial.print(",");
+    Serial.print(valorBoton14);
+    Serial.print(",");
+    Serial.print(valorBoton15);
+    Serial.print(",");
+    Serial.print(valorBoton16);
+    
+    /*Serial.print(joyXMap);
+    Serial.print(",");
+    Serial.print(joyYMap);
+    */
+    Serial.println();
+    
+    delay(50);
+    
+
+}
+  
