@@ -1,0 +1,89 @@
+/*
+ * Vive Tracker Example
+ *
+ * Shows how to send button
+ */
+
+// Require vive tracker controller library
+#include <ViveTrackerController.h>
+
+// Initialize USB Host Controller
+USBHost usb;
+
+// Attach vive tracker controller to USB
+ViveTrackerController tracker(usb);
+
+
+bool arrayValores[15]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; //array de booleanos para almacenar los valores leidos de los votones
+
+void setup() {
+  
+  Serial.begin(115200);
+  Serial.println("Program started");
+
+  for (int thisPin = 53; thisPin >= 23; thisPin= thisPin-2) {  //inicializamos los pines (impares) como entrada y activamos la resistencis pull-up de los pines (leeremos un 1 cuando esten a 0)
+    pinMode(thisPin, INPUT_PULLUP);
+  }
+  
+  delay(200);
+}
+
+
+void loop() {
+
+  int posArray=0;
+
+   for (int thisPin = 23; thisPin <= 53; thisPin= thisPin+2) { //leemos los pines pares y los introducimos en el array creado arriba
+     arrayValores[posArray]=digitalRead (thisPin);
+     posArray++;
+     
+  }
+
+
+
+  for (int k=0; k<=15; k++) {  //printeamos por el puerto serie los valores introducidos en el array separados por comas
+     Serial.print (arrayValores[k]);
+     Serial.print ("; ");   
+  }
+
+   Serial.println ("");   
+   
+
+
+int16_t padX= BoolArrayToInt(arrayValores); //llamamos al metodo "BoolArrayToInt" que nos convertira el array de booleanos en un int de 16 bits (Ej. {true, false, false} pasara a ser un padX=4)
+
+Serial.println (padX); //printeamos el array ya convertido a INT
+  
+  tracker.Task(); // Process usb and vive tracker controller tasks
+  
+  if (tracker.isConnected()) {
+    // Send accessory state to vive tracker.
+    
+    uint8_t buttons = arrayValores [15]; //Rellenamos los valores a enviar
+    //int16_t padX = 32767; //ya esta rellenado arriba
+    int16_t padY = -32768;
+    uint8_t trigger = 0;
+    uint16_t batteryLevel = 0;
+    
+    tracker.setTrackerStatus(buttons, padX, padY, trigger, batteryLevel);
+    
+
+    
+  }
+  delay(100);
+}
+
+  int16_t BoolArrayToInt(bool boolArray[14])
+{
+  int result = 0; 
+
+  for(int i = 0; i < 15; i++)
+  {
+    if(boolArray[i])
+    {
+      result = result | (1 << i);
+    }
+  }
+
+  return result;
+}
